@@ -75,8 +75,8 @@ jobs:
           platforms: ${{ matrix.platform }}
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.arch }}-addon-nginxproxymanager:${{ steps.version.outputs.version }}
-            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ matrix.arch }}-addon-nginxproxymanager:latest
+            ghcr.io/graysoncadams/${{ matrix.arch }}-addon-nginxproxymanager:${{ steps.version.outputs.version }}
+            ghcr.io/graysoncadams/${{ matrix.arch }}-addon-nginxproxymanager:latest
           build-args: |
             BUILD_FROM=${{ steps.build_args.outputs.build_from }}
             BUILD_ARCH=${{ matrix.arch }}
