@@ -15,7 +15,7 @@ COPY patches/*.patch /usr/src/
 ARG NGINX_PROXY_MANAGER_VERSION="v2.12.4"
 # hadolint ignore=DL3003,DL3042,DL3018
 RUN \
-    apk upgrade --no-cache \
+    apk upgrade --no-cache --available \
     && apk add --no-cache --virtual .build-dependencies \
         build-base \
         git \
