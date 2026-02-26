@@ -61,7 +61,4 @@ jobs:
       - name: Build and push add-on
         uses: home-assistant/builder@master
         with:
-          args: |
-            --${{ matrix.arch }} \
-            --target proxy-manager \
-            --docker-hub ${{ env.REGISTRY }}/${{ github.repository_owner }}
+          args: --${{ matrix.arch }} --target proxy-manager --docker-hub ${{ env.REGISTRY }}/${{ github.repository_owner }}
