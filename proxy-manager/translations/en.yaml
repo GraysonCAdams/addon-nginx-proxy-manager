@@ -1,5 +1,5 @@
 ---
 network:
-  80/tcp: HTTP Entrance port
-  81/tcp: NGinx Proxy Manager Admin web interface
-  443/tcp: HTTPS/SSL Entrance port
+  80/tcp: HTTP traffic for reverse proxy
+  81/tcp: Admin web interface (optional - ingress preferred)
+  443/tcp: HTTPS/SSL traffic for reverse proxy

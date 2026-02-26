@@ -33,9 +33,36 @@ comparison to installing any other Home Assistant add-on.
    Home Assistant machine.
 1. Enjoy the add-on!
 
+## Accessing the Admin Interface
+
+This add-on supports Home Assistant Ingress, which means you can access the
+admin interface directly from the Home Assistant sidebar without exposing
+additional ports.
+
+### Via Ingress (Recommended)
+
+Simply click "OPEN WEB UI" in the add-on page, or access it from the sidebar
+if you've enabled "Show in sidebar". This method:
+
+- Works with Nabu Casa Home Assistant Cloud for secure remote access
+- Requires Home Assistant authentication first (single sign-on experience)
+- Does not require exposing port 81 to your network
+
+### Via Direct Port Access (Optional)
+
+If you prefer direct access to the admin interface, you can enable port 81
+in the add-on's network configuration. This is useful for:
+
+- Accessing NPM when Home Assistant is not available
+- Direct LAN access without going through Home Assistant
+- Troubleshooting ingress issues
+
+To enable: Go to the add-on Configuration tab, expand "Network", and set
+port 81 to your desired port number.
+
 ## Configuration
 
-This add-on does not provide any configuration.
+This add-on does not require any configuration options to be set.
 
 ## Changelog & Releases
 
