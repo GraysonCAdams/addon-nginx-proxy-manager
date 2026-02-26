@@ -33,10 +33,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        arch:
-          - aarch64
-          - amd64
-          - armv7
+        include:
+          - arch: amd64
+            platform: linux/amd64
+          - arch: aarch64
+            platform: linux/arm64
+          - arch: armv7
+            platform: linux/arm/v7
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -47,7 +50,19 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build add-on
-        uses: home-assistant/builder@master
+      - name: Extract build args from build.yaml
+        id: build_args
+        run: |
+          BUILD_FROM=$(grep "${{ matrix.arch }}:" proxy-manager/build.yaml | head -1 | cut -d: -f2- | tr -d ' ')
+          echo "build_from=$BUILD_FROM" >> $GITHUB_OUTPUT
+
+      - name: Build (test only)
+        uses: docker/build-push-action@v5
         with:
-          args: --test --${{ matrix.arch }} --target proxy-manager --docker-hub ghcr.io/${{ github.repository_owner }}
+          context: proxy-manager
+          file: proxy-manager/Dockerfile
+          platforms: ${{ matrix.platform }}
+          push: false
+          build-args: |
+            BUILD_FROM=${{ steps.build_args.outputs.build_from }}
+            BUILD_ARCH=${{ matrix.arch }}
