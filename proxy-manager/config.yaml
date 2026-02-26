@@ -28,3 +28,4 @@ map:
   - addon_config:rw
 backup_exclude:
   - "*/logs"
+image: ghcr.io/graysoncadams/{arch}-addon-nginxproxymanager
