@@ -13,9 +13,10 @@ COPY patches/*.patch /usr/src/
 
 # Setup base
 ARG NGINX_PROXY_MANAGER_VERSION="v2.12.4"
-# hadolint ignore=DL3003,DL3042
+# hadolint ignore=DL3003,DL3042,DL3018
 RUN \
-    apk add --no-cache --virtual .build-dependencies \
+    apk upgrade --no-cache \
+    && apk add --no-cache --virtual .build-dependencies \
         build-base \
         git \
         libffi-dev \
